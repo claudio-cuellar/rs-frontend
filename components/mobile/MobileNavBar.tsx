@@ -28,11 +28,11 @@ export function MobileNavBar({ className }: MobileNavBarProps) {
   return (
     <nav
       className={cn(
-        'fixed bottom-0 left-0 right-0 z-50 border-t border-slate-700 bg-slate-900 px-2 pb-safe',
+        'fixed bottom-0 left-0 right-0 z-50 border-t border-slate-700 bg-slate-900 pb-safe',
         className
       )}
     >
-      <div className="flex items-center justify-around py-2">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-around px-2 py-2">
         {navItems.map((item) => {
           const isActive = pathname === item.href || 
             (item.href !== '/' && pathname.startsWith(item.href));

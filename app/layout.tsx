@@ -23,9 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={inter.variable}>
-      <body className="min-h-screen bg-gray-50 antialiased">
+      <body className="min-h-screen bg-slate-900 antialiased">
         <CurrencyProvider>
-          {children}
+          <div className="mx-auto max-w-[1200px]">
+            {children}
+          </div>
         </CurrencyProvider>
       </body>
     </html>
