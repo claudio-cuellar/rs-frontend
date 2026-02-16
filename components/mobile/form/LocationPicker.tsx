@@ -67,9 +67,9 @@ export function LocationPicker({
   return (
     <div className={cn('', className)}>
       <div className="mb-2">
-        <h3 className="text-lg font-semibold text-white">Location in La Paz</h3>
+        <h3 className="text-lg font-semibold text-white">Ubicación en La Paz</h3>
         <p className="text-sm text-gray-400">
-          Drag the pin to mark your property location.
+          Arrastra el marcador para ubicar tu propiedad.
         </p>
       </div>
 
@@ -161,7 +161,7 @@ export function LocationPicker({
             setShowSuggestions(true);
           }}
           onFocus={() => setShowSuggestions(true)}
-          placeholder="Neighborhood (e.g. Sopocachi, Calacoto)"
+          placeholder="Barrio (ej. Sopocachi, Calacoto)"
           className="w-full rounded-xl bg-slate-800 px-4 py-3.5 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 

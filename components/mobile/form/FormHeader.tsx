@@ -19,7 +19,7 @@ export function FormHeader({
   onSave,
   onClose,
   showSave = true,
-  saveLabel = 'Save',
+  saveLabel = 'Guardar',
   saveDisabled = false,
   className,
 }: FormHeaderProps) {

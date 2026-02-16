@@ -1,18 +1,17 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import type { TransactionType } from '@/types/database';
+import type { ListingType } from '@/types/database';
 
 interface ListingTypeTabsProps {
-  value: TransactionType;
-  onChange: (value: TransactionType) => void;
+  value: ListingType;
+  onChange: (value: ListingType) => void;
   className?: string;
 }
 
-const LISTING_TYPES: { value: TransactionType; label: string }[] = [
-  { value: 'sale', label: 'Sale' },
-  { value: 'rent', label: 'Rent' },
-  { value: 'anticretico', label: 'Anticrético' },
+const LISTING_TYPES: { value: ListingType; label: string }[] = [
+  { value: 'sale', label: 'Venta' },
+  { value: 'rent', label: 'Alquiler / Anticrético' },
 ];
 
 export function ListingTypeTabs({
