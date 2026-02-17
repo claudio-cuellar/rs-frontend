@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   DashboardHeader,
   DashboardTabs,
@@ -10,120 +11,194 @@ import {
   DashboardPropertyCard,
   DashboardNavBar,
 } from '@/components/mobile/dashboard';
-import { SectionHeader } from '@/components/mobile/SectionHeader';
-import type { TransactionType } from '@/types/database';
+import {
+  getCurrentUser,
+  getFavorites,
+  getMyPropertiesWithMedia,
+  addFavorite,
+  removeFavorite,
+  type UserProfile,
+  type PropertyWithMedia,
+} from '@/lib/services/properties';
+import type { TransactionType, ListingType } from '@/types/database';
 
-// Sample user data
-const USER = {
-  name: 'Carlos',
-  avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80',
-};
+type PropertyStatus = 'active' | 'sold' | 'archived' | 'draft';
 
-// Sample properties data
-interface SampleProperty {
+interface DashboardProperty {
   id: string;
   title: string;
   price: number;
   priceCurrency: string;
   transactionType: TransactionType;
-  imageUrl: string;
+  imageUrl?: string;
   bedrooms: number;
   bathrooms: number;
-  area: number;
+  area?: number;
   location: string;
-  status: 'active' | 'sold' | 'archived' | 'new';
-  isFavorited: boolean;
-  hasPriceDropped?: boolean;
+  status: PropertyStatus;
   isNewListing?: boolean;
+  createdAt: string;
 }
 
-const SAMPLE_FAVORITES: SampleProperty[] = [
-  {
-    id: '1',
-    title: 'Modern Condo in Calacoto',
-    price: 45000,
-    priceCurrency: 'USD',
-    transactionType: 'anticretico',
-    imageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-    bedrooms: 3,
-    bathrooms: 2,
-    area: 120,
-    location: 'Zona Sur, La Paz',
-    status: 'active',
-    isFavorited: true,
-    hasPriceDropped: true,
-  },
-  {
-    id: '2',
-    title: 'Historic Sopocachi Residence',
-    price: 185000,
-    priceCurrency: 'USD',
-    transactionType: 'sale',
-    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 250,
-    location: 'Sopocachi, La Paz',
-    status: 'sold',
-    isFavorited: true,
-  },
-  {
-    id: '3',
-    title: 'Penthouse Achumani View',
-    price: 850,
-    priceCurrency: 'USD',
-    transactionType: 'rent',
-    imageUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
-    bedrooms: 2,
-    bathrooms: 2,
-    area: 95,
-    location: 'Achumani, La Paz',
-    status: 'active',
-    isFavorited: true,
-    isNewListing: true,
-  },
-];
+// Map listing_type to TransactionType for display
+function mapListingType(listingType: ListingType): TransactionType {
+  return listingType === 'sale' ? 'sale' : 'rent';
+}
 
-const SAMPLE_LISTINGS: SampleProperty[] = [
-  {
-    id: '4',
-    title: 'My Apartment in Miraflores',
-    price: 65000,
-    priceCurrency: 'USD',
-    transactionType: 'sale',
-    imageUrl: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 85,
-    location: 'Miraflores, La Paz',
-    status: 'active',
-    isFavorited: false,
-  },
-  {
-    id: '5',
-    title: 'Commercial Space Downtown',
-    price: 1200,
-    priceCurrency: 'USD',
-    transactionType: 'rent',
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-    bedrooms: 0,
-    bathrooms: 2,
-    area: 150,
-    location: 'Centro, La Paz',
-    status: 'archived',
-    isFavorited: false,
-  },
-];
+// Map property status
+function mapStatus(status: string): PropertyStatus {
+  switch (status) {
+    case 'active':
+      return 'active';
+    case 'sold':
+      return 'sold';
+    case 'rented':
+      return 'sold';
+    case 'archived':
+      return 'archived';
+    case 'draft':
+      return 'draft';
+    default:
+      return 'active';
+  }
+}
+
+// Check if property is new (created within last 7 days)
+function isNewListing(createdAt: string): boolean {
+  const created = new Date(createdAt);
+  const now = new Date();
+  const diffDays = (now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
+  return diffDays <= 7;
+}
+
+// Transform property from DB to dashboard format
+function transformProperty(property: PropertyWithMedia): DashboardProperty {
+  const primaryImage = property.property_media?.find((m) => m.is_primary);
+  const firstImage = property.property_media?.[0];
+  
+  return {
+    id: property.id,
+    title: property.title,
+    price: property.price,
+    priceCurrency: property.price_currency,
+    transactionType: mapListingType(property.listing_type),
+    imageUrl: primaryImage?.public_url || firstImage?.public_url || undefined,
+    bedrooms: property.bedrooms,
+    bathrooms: property.bathrooms,
+    area: property.living_area || undefined,
+    location: property.neighborhood 
+      ? `${property.neighborhood}, ${property.city || 'La Paz'}`
+      : property.city || 'La Paz',
+    status: mapStatus(property.status),
+    isNewListing: isNewListing(property.created_at),
+    createdAt: property.created_at,
+  };
+}
 
 export default function MobileDashboardPage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<DashboardTab>('favorites');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
-  const [favorites, setFavorites] = useState<Set<string>>(
-    new Set(SAMPLE_FAVORITES.map((p) => p.id))
-  );
+  
+  // Data states
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [favorites, setFavorites] = useState<DashboardProperty[]>([]);
+  const [myListings, setMyListings] = useState<DashboardProperty[]>([]);
+  const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
+  
+  // Loading states
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch data on mount
+  useEffect(() => {
+    async function loadData() {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        // Get current user
+        const { data: userData, error: userError } = await getCurrentUser();
+        
+        if (userError || !userData) {
+          setIsAuthenticated(false);
+          return;
+        }
+        
+        setUser(userData);
+        setIsAuthenticated(true);
+
+        // Fetch favorites and listings in parallel
+        const [favoritesResult, listingsResult] = await Promise.all([
+          getFavorites(),
+          getMyPropertiesWithMedia(),
+        ]);
+
+        if (favoritesResult.data) {
+          const transformedFavorites = favoritesResult.data.map(transformProperty);
+          setFavorites(transformedFavorites);
+          setFavoriteIds(new Set(favoritesResult.data.map((p) => p.id)));
+        }
+
+        if (listingsResult.data) {
+          setMyListings(listingsResult.data.map(transformProperty));
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Error al cargar datos');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
+  // Toggle favorite
+  const toggleFavorite = async (id: string) => {
+    const isFav = favoriteIds.has(id);
+    
+    // Optimistic update
+    setFavoriteIds((prev) => {
+      const newSet = new Set(prev);
+      if (isFav) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+
+    // Update favorites list if removing
+    if (isFav) {
+      setFavorites((prev) => prev.filter((p) => p.id !== id));
+    }
+
+    try {
+      if (isFav) {
+        const { error } = await removeFavorite(id);
+        if (error) throw error;
+      } else {
+        const { error } = await addFavorite(id);
+        if (error) throw error;
+      }
+    } catch (err) {
+      // Revert on error
+      setFavoriteIds((prev) => {
+        const newSet = new Set(prev);
+        if (isFav) {
+          newSet.add(id);
+        } else {
+          newSet.delete(id);
+        }
+        return newSet;
+      });
+      console.error('Error toggling favorite:', err);
+    }
+  };
 
   // Get properties based on active tab
-  const properties = activeTab === 'favorites' ? SAMPLE_FAVORITES : SAMPLE_LISTINGS;
+  const properties = activeTab === 'favorites' ? favorites : myListings;
 
   // Filter properties
   const filteredProperties = properties.filter((p) => {
@@ -132,46 +207,66 @@ export default function MobileDashboardPage() {
     return p.transactionType === activeFilter;
   });
 
-  const toggleFavorite = (id: string) => {
-    setFavorites((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
-
   const getSectionTitle = () => {
     switch (activeTab) {
       case 'favorites':
-        return 'Saved Properties';
+        return 'Propiedades Guardadas';
       case 'listings':
-        return 'My Listings';
+        return 'Mis Anuncios';
       case 'messages':
-        return 'Messages';
+        return 'Mensajes';
       default:
         return '';
     }
   };
 
+  // Show login prompt if not authenticated
+  if (isAuthenticated === false) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-900 px-4">
+        <div className="text-center">
+          <h2 className="text-xl font-bold text-white">Iniciar Sesión Requerido</h2>
+          <p className="mt-2 text-gray-400">
+            Necesitas iniciar sesión para ver tu dashboard.
+          </p>
+          <button
+            onClick={() => router.push('/login?redirect=/m/dashboard')}
+            className="mt-4 rounded-full bg-blue-500 px-6 py-2.5 font-semibold text-white hover:bg-blue-600"
+          >
+            Iniciar Sesión
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Loading state
+  if (isLoading || isAuthenticated === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-900">
+        <div className="text-center">
+          <div className="h-8 w-8 mx-auto animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+          <p className="mt-4 text-gray-400">Cargando...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-900 pb-24">
       {/* Header */}
       <DashboardHeader
-        userName={USER.name}
-        avatarUrl={USER.avatarUrl}
-        notificationCount={2}
+        userName={user?.fullName || 'Usuario'}
+        avatarUrl={user?.avatarUrl}
+        notificationCount={0}
       />
 
       {/* Tabs */}
       <DashboardTabs
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        favoritesCount={SAMPLE_FAVORITES.length}
-        listingsCount={SAMPLE_LISTINGS.length}
+        favoritesCount={favorites.length}
+        listingsCount={myListings.length}
       />
 
       {/* Filter Chips */}
@@ -182,12 +277,19 @@ export default function MobileDashboardPage() {
         />
       </div>
 
+      {/* Error Banner */}
+      {error && (
+        <div className="mx-4 mt-4 rounded-lg bg-red-500/10 p-3 text-sm text-red-400">
+          {error}
+        </div>
+      )}
+
       {/* Section Header */}
       <div className="mt-4 px-4">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-white">{getSectionTitle()}</h2>
           <span className="text-sm text-blue-400">
-            {filteredProperties.length} items
+            {filteredProperties.length} {filteredProperties.length === 1 ? 'propiedad' : 'propiedades'}
           </span>
         </div>
       </div>
@@ -197,9 +299,9 @@ export default function MobileDashboardPage() {
         {activeTab === 'messages' ? (
           // Messages placeholder
           <div className="py-12 text-center">
-            <p className="text-gray-400">No messages yet</p>
+            <p className="text-gray-400">Sin mensajes aún</p>
             <p className="mt-2 text-sm text-gray-500">
-              Your conversations with agents will appear here
+              Tus conversaciones con agentes aparecerán aquí
             </p>
           </div>
         ) : filteredProperties.length > 0 ? (
@@ -217,18 +319,40 @@ export default function MobileDashboardPage() {
               area={property.area}
               location={property.location}
               status={property.status}
-              isFavorited={favorites.has(property.id)}
-              hasPriceDropped={property.hasPriceDropped}
+              isFavorited={favoriteIds.has(property.id)}
               isNewListing={property.isNewListing}
               onFavoriteClick={() => toggleFavorite(property.id)}
             />
           ))
         ) : (
           <div className="py-12 text-center">
-            <p className="text-gray-400">No properties found</p>
-            <p className="mt-2 text-sm text-gray-500">
-              Try adjusting your filters
-            </p>
+            {activeTab === 'favorites' ? (
+              <>
+                <p className="text-gray-400">No tienes propiedades guardadas</p>
+                <p className="mt-2 text-sm text-gray-500">
+                  Explora propiedades y guárdalas para verlas aquí
+                </p>
+                <button
+                  onClick={() => router.push('/m/search')}
+                  className="mt-4 rounded-full bg-blue-500 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-600"
+                >
+                  Explorar Propiedades
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="text-gray-400">No tienes anuncios</p>
+                <p className="mt-2 text-sm text-gray-500">
+                  Publica tu primera propiedad
+                </p>
+                <button
+                  onClick={() => router.push('/m/list')}
+                  className="mt-4 rounded-full bg-blue-500 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-600"
+                >
+                  Publicar Propiedad
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>

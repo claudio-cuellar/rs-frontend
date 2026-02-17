@@ -1,17 +1,19 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import type { ListingType } from '@/types/database';
+
+export type TransactionType = 'sale' | 'rent' | 'anticretico';
 
 interface ListingTypeTabsProps {
-  value: ListingType;
-  onChange: (value: ListingType) => void;
+  value: TransactionType;
+  onChange: (value: TransactionType) => void;
   className?: string;
 }
 
-const LISTING_TYPES: { value: ListingType; label: string }[] = [
+const TRANSACTION_TYPES: { value: TransactionType; label: string }[] = [
   { value: 'sale', label: 'Venta' },
-  { value: 'rent', label: 'Alquiler / Anticrético' },
+  { value: 'rent', label: 'Alquiler' },
+  { value: 'anticretico', label: 'Anticrético' },
 ];
 
 export function ListingTypeTabs({
@@ -21,21 +23,18 @@ export function ListingTypeTabs({
 }: ListingTypeTabsProps) {
   return (
     <div className={className}>
-      <label className="mb-2 block text-sm font-medium text-white">
-        Listing Type
-      </label>
-
+      <h2 className="mb-3 text-lg font-bold text-white">Quiero...</h2>
       <div className="flex rounded-xl bg-slate-800 p-1">
-        {LISTING_TYPES.map((type) => (
+        {TRANSACTION_TYPES.map((type) => (
           <button
             key={type.value}
             type="button"
             onClick={() => onChange(type.value)}
             className={cn(
-              'flex-1 rounded-lg py-2.5 text-sm font-medium transition-colors',
+              'flex-1 rounded-lg py-3 text-sm font-medium transition-all',
               value === type.value
-                ? 'bg-slate-700 text-blue-400'
-                : 'text-gray-400 hover:text-gray-300'
+                ? 'bg-slate-900 text-blue-400 shadow-sm'
+                : 'text-slate-400 hover:text-slate-300'
             )}
           >
             {type.label}

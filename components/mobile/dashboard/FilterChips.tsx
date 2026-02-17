@@ -11,9 +11,9 @@ interface FilterChipsProps {
 }
 
 const FILTERS: { id: FilterType; label: string }[] = [
-  { id: 'all', label: 'All Types' },
-  { id: 'sale', label: 'Sale' },
-  { id: 'rent', label: 'Rent' },
+  { id: 'all', label: 'Todos' },
+  { id: 'sale', label: 'Venta' },
+  { id: 'rent', label: 'Alquiler' },
   { id: 'anticretico', label: 'Anticrético' },
 ];
 

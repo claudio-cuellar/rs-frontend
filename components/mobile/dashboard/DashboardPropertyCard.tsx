@@ -36,8 +36,8 @@ const transactionBadgeStyles: Record<TransactionType, string> = {
 };
 
 const transactionLabels: Record<TransactionType, string> = {
-  sale: 'SALE',
-  rent: 'RENT',
+  sale: 'VENTA',
+  rent: 'ALQUILER',
   anticretico: 'ANTICRÉTICO',
 };
 
@@ -94,17 +94,17 @@ export function DashboardPropertyCard({
           {/* Status Badges */}
           {isSold && (
             <span className="rounded-md bg-slate-900/80 px-2 py-1 text-[10px] font-bold uppercase text-white">
-              SOLD
+              VENDIDO
             </span>
           )}
           {hasPriceDropped && !isSold && (
             <span className="rounded-md bg-orange-500 px-2 py-1 text-[10px] font-bold uppercase text-white">
-              PRICE DROPPED
+              BAJÓ DE PRECIO
             </span>
           )}
           {isNewListing && !isSold && (
             <span className="rounded-md bg-green-500 px-2 py-1 text-[10px] font-bold uppercase text-white">
-              NEW LISTING
+              NUEVO
             </span>
           )}
         </div>
@@ -138,7 +138,7 @@ export function DashboardPropertyCard({
         )}>
           {formatPrice(price, priceCurrency)}
           {transactionType === 'rent' && (
-            <span className="text-sm font-normal text-gray-500"> /month</span>
+            <span className="text-sm font-normal text-gray-500"> /mes</span>
           )}
         </p>
 
@@ -147,7 +147,7 @@ export function DashboardPropertyCard({
 
         {/* Stats */}
         <p className="mt-1 text-sm text-gray-400">
-          {bedrooms} beds • {bathrooms} baths{area ? ` • ${area}m²` : ''}
+          {bedrooms} dorm. • {bathrooms} baños{area ? ` • ${area}m²` : ''}
         </p>
 
         {/* Location & Action */}
@@ -159,14 +159,14 @@ export function DashboardPropertyCard({
 
           {isArchived ? (
             <span className="rounded-full bg-slate-700 px-4 py-1.5 text-xs font-medium text-gray-400">
-              Archived
+              Archivado
             </span>
           ) : !isSold ? (
             <Link
               href={`/m/property/${id}`}
               className="rounded-full bg-blue-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-blue-600"
             >
-              View Details
+              Ver Detalles
             </Link>
           ) : null}
         </div>

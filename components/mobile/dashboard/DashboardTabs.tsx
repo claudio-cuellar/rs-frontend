@@ -25,19 +25,19 @@ export function DashboardTabs({
   const tabs = [
     {
       id: 'favorites' as DashboardTab,
-      label: 'Favorites',
+      label: 'Favoritos',
       icon: Heart,
       count: favoritesCount,
     },
     {
       id: 'listings' as DashboardTab,
-      label: 'My Listings',
+      label: 'Mis Anuncios',
       icon: LayoutList,
       count: listingsCount,
     },
     {
       id: 'messages' as DashboardTab,
-      label: 'Messages',
+      label: 'Mensajes',
       icon: MessageSquare,
       count: messagesCount,
     },

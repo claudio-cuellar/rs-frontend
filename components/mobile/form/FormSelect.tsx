@@ -23,7 +23,7 @@ export function FormSelect({
   value,
   options,
   onChange,
-  placeholder = 'Select...',
+  placeholder = 'Seleccionar...',
   className,
 }: FormSelectProps) {
   const [isOpen, setIsOpen] = useState(false);

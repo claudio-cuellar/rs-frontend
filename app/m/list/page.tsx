@@ -7,6 +7,7 @@ import {
   FormProgressBar,
   FormSelect,
   ListingTypeTabs,
+  PropertyTypeGrid,
   LocationPicker,
   PhotoUploader,
   FormFooter,
@@ -26,6 +27,8 @@ const PROPERTY_TYPES = [
   { value: 'office', label: 'Oficina' },
 ];
 
+const TITLE_MAX_LENGTH = 80;
+
 const TERM_OPTIONS = [
   { value: '1', label: '1 Año' },
   { value: '2', label: '2 Años' },
@@ -36,6 +39,7 @@ const TERM_OPTIONS = [
 interface FormData {
   propertyType: string;
   listingType: ListingType;
+  isAnticretico: boolean;
   latitude: number;
   longitude: number;
   neighborhood: string;
@@ -55,6 +59,13 @@ interface FormData {
 
 const TOTAL_STEPS = 4;
 
+const STEP_LABELS: Record<number, string> = {
+  1: 'Información básica',
+  2: 'Detalles y precio',
+  3: 'Características',
+  4: 'Revisar y publicar',
+};
+
 export default function ListPropertyPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
@@ -65,6 +76,7 @@ export default function ListPropertyPage() {
   const [formData, setFormData] = useState<FormData>({
     propertyType: 'apartment',
     listingType: 'sale',
+    isAnticretico: false,
     latitude: -16.5,
     longitude: -68.15,
     neighborhood: '',
@@ -152,13 +164,17 @@ export default function ListPropertyPage() {
   const validateStep = (step: number): boolean => {
     switch (step) {
       case 1:
-        return !!formData.propertyType && !!formData.listingType;
+        return (
+          !!formData.propertyType &&
+          !!formData.listingType &&
+          !!formData.title.trim()
+        );
       case 2:
-        return !!formData.title && formData.price > 0;
+        return formData.price > 0;
       case 3:
-        return true; // Features are optional
+        return true;
       case 4:
-        return true; // Review step
+        return true;
       default:
         return true;
     }
@@ -214,7 +230,7 @@ export default function ListPropertyPage() {
 
   const handleContinue = async () => {
     if (!validateStep(currentStep)) {
-      setError('Por favor completa todos los campos requeridos');
+      setError('Completa todos los campos requeridos para continuar.');
       return;
     }
 
@@ -310,10 +326,18 @@ export default function ListPropertyPage() {
   return (
     <div className="min-h-screen bg-slate-900 pb-24">
       {/* Header */}
-      <FormHeader title="Publicar Propiedad" onSave={handleSave} />
+      <FormHeader
+        title="Listar tu Propiedad"
+        saveLabel="Guardar borrador"
+        onSave={handleSave}
+      />
 
-      {/* Progress Bar */}
-      <FormProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+      {/* Progress: Paso X de 4 · Nombre del paso */}
+      <FormProgressBar
+        currentStep={currentStep}
+        totalSteps={TOTAL_STEPS}
+        stepLabels={[STEP_LABELS[1], STEP_LABELS[2], STEP_LABELS[3], STEP_LABELS[4]]}
+      />
 
       {/* Error Banner */}
       {error && (
@@ -347,14 +371,17 @@ export default function ListPropertyPage() {
         onBack={handleBack}
         onContinue={handleContinue}
         showBack={currentStep > 1}
-        continueLabel={currentStep === TOTAL_STEPS ? 'Publicar Anuncio' : 'Continuar'}
+        backLabel="Atrás"
+        continueLabel={
+          currentStep === TOTAL_STEPS ? 'Publicar anuncio' : 'Continuar'
+        }
         isLoading={isLoading}
       />
     </div>
   );
 }
 
-// Step 1: Basic Information
+// Paso 1: Información básica (como en el diseño: Quiero..., tipo de propiedad, título)
 function Step1BasicInfo({
   formData,
   updateFormData,
@@ -362,77 +389,65 @@ function Step1BasicInfo({
   formData: FormData;
   updateFormData: (updates: Partial<FormData>) => void;
 }) {
-  return (
-    <div className="space-y-6">
-      {/* Section Header */}
-      <div>
-        <h2 className="text-xl font-bold text-white">Información Básica</h2>
-        <p className="mt-1 text-sm text-gray-400">
-          Comienza con los datos esenciales de tu anuncio.
-        </p>
-      </div>
+  const transactionValue =
+    formData.listingType === 'sale'
+      ? 'sale'
+      : formData.isAnticretico
+        ? 'anticretico'
+        : 'rent';
 
-      {/* Property Type */}
-      <FormSelect
-        label="Tipo de Propiedad"
+  const handleTransactionChange = (value: 'sale' | 'rent' | 'anticretico') => {
+    if (value === 'sale') {
+      updateFormData({ listingType: 'sale', isAnticretico: false });
+    } else if (value === 'anticretico') {
+      updateFormData({ listingType: 'rent', isAnticretico: true });
+    } else {
+      updateFormData({ listingType: 'rent', isAnticretico: false });
+    }
+  };
+
+  return (
+    <div className="space-y-8">
+      {/* Quiero... — Venta | Alquiler | Anticrético */}
+      <ListingTypeTabs
+        value={transactionValue}
+        onChange={handleTransactionChange}
+      />
+
+      {/* ¿Qué tipo de propiedad es? — Grid de tarjetas */}
+      <PropertyTypeGrid
         value={formData.propertyType}
-        options={PROPERTY_TYPES}
         onChange={(value) => updateFormData({ propertyType: value })}
       />
 
-      {/* Listing Type */}
-      <ListingTypeTabs
-        value={formData.listingType}
-        onChange={(value) => updateFormData({ listingType: value })}
-      />
-
-      {/* Location */}
-      <LocationPicker
-        latitude={formData.latitude}
-        longitude={formData.longitude}
-        neighborhood={formData.neighborhood}
-        onLocationChange={(lat, lng) =>
-          updateFormData({ latitude: lat, longitude: lng })
-        }
-        onNeighborhoodChange={(neighborhood) => updateFormData({ neighborhood })}
-      />
-
-      {/* Anticrético Terms - shown when listing type is rent */}
-      {formData.listingType === 'rent' && (
-        <div>
-          <h3 className="mb-3 text-lg font-semibold text-white">
-            Términos de Anticrético (Opcional)
-          </h3>
-          <p className="mb-3 text-sm text-gray-400">
-            Completa estos campos si es un anuncio de Anticrético.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <FormSelect
-              label="PLAZO FIJO"
-              value={formData.fixedTerm}
-              options={[{ value: '', label: 'No es Anticrético' }, ...TERM_OPTIONS]}
-              onChange={(value) => updateFormData({ fixedTerm: value })}
-            />
-            <FormSelect
-              label="PLAZO VOLUNTARIO"
-              value={formData.voluntaryTerm}
-              options={TERM_OPTIONS}
-              onChange={(value) => updateFormData({ voluntaryTerm: value })}
-            />
-          </div>
+      {/* Título del anuncio — 0/80 y helper */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-bold text-white">
+            Título del anuncio
+          </h2>
+          <span className="text-sm text-slate-400">
+            {formData.title.length} / {TITLE_MAX_LENGTH}
+          </span>
         </div>
-      )}
-
-      {/* Photos */}
-      <PhotoUploader
-        photos={formData.photos}
-        onPhotosChange={(photos) => updateFormData({ photos })}
-      />
+        <input
+          type="text"
+          maxLength={TITLE_MAX_LENGTH}
+          value={formData.title}
+          onChange={(e) => updateFormData({ title: e.target.value })}
+          placeholder="ej. Departamento moderno de 2 dormitorios en Sopocachi"
+          className="w-full rounded-xl border-0 bg-slate-800 px-4 py-3.5 text-base text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <p className="text-xs text-slate-400">
+          Un título atractivo ayuda a que tu propiedad se destaque en los
+          resultados de búsqueda.
+        </p>
+      </div>
     </div>
   );
 }
 
-// Step 2: Property Details
+// Paso 2: Detalles y precio (ubicación, fotos, descripción, precio, términos anticrético)
 function Step2Details({
   formData,
   updateFormData,
@@ -443,27 +458,54 @@ function Step2Details({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-white">Detalles de la Propiedad</h2>
+        <h2 className="text-xl font-bold text-white">
+          Paso 2 · Detalles y precio
+        </h2>
         <p className="mt-1 text-sm text-gray-400">
-          Cuéntanos más sobre tu propiedad.
+          Ubicación, fotos, descripción y precio.
         </p>
       </div>
 
-      {/* Title */}
-      <div>
-        <label className="mb-2 block text-sm font-medium text-white">
-          Título <span className="text-red-400">*</span>
-        </label>
-        <input
-          type="text"
-          value={formData.title}
-          onChange={(e) => updateFormData({ title: e.target.value })}
-          placeholder="Ej: Departamento Moderno en Sopocachi"
-          className="w-full rounded-xl bg-slate-800 px-4 py-3.5 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+      <LocationPicker
+        latitude={formData.latitude}
+        longitude={formData.longitude}
+        neighborhood={formData.neighborhood}
+        onLocationChange={(lat, lng) =>
+          updateFormData({ latitude: lat, longitude: lng })
+        }
+        onNeighborhoodChange={(neighborhood) => updateFormData({ neighborhood })}
+      />
 
-      {/* Description */}
+      <PhotoUploader
+        photos={formData.photos}
+        onPhotosChange={(photos) => updateFormData({ photos })}
+      />
+
+      {formData.isAnticretico && (
+        <div>
+          <h3 className="mb-3 text-lg font-semibold text-white">
+            Términos de Anticrético (Opcional)
+          </h3>
+          <p className="mb-3 text-sm text-gray-400">
+            Completa estos campos si es un anuncio de Anticrético.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            <FormSelect
+              label="Plazo fijo"
+              value={formData.fixedTerm}
+              options={[{ value: '', label: 'No es Anticrético' }, ...TERM_OPTIONS]}
+              onChange={(value) => updateFormData({ fixedTerm: value })}
+            />
+            <FormSelect
+              label="Plazo voluntario"
+              value={formData.voluntaryTerm}
+              options={TERM_OPTIONS}
+              onChange={(value) => updateFormData({ voluntaryTerm: value })}
+            />
+          </div>
+        </div>
+      )}
+
       <div>
         <label className="mb-2 block text-sm font-medium text-white">
           Descripción
@@ -477,7 +519,6 @@ function Step2Details({
         />
       </div>
 
-      {/* Price */}
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="mb-2 block text-sm font-medium text-white">
@@ -507,7 +548,7 @@ function Step2Details({
   );
 }
 
-// Step 3: Features
+// Paso 3: Características
 function Step3Features({
   formData,
   updateFormData,
@@ -518,9 +559,11 @@ function Step3Features({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-white">Características</h2>
+        <h2 className="text-xl font-bold text-white">
+          Paso 3 · Características
+        </h2>
         <p className="mt-1 text-sm text-gray-400">
-          Agrega los detalles que los compradores quieren saber.
+          Dormitorios, baños, área y estacionamientos.
         </p>
       </div>
 
@@ -586,14 +629,14 @@ function Step3Features({
   );
 }
 
-// Step 4: Review
+// Paso 4: Revisar y publicar
 function Step4Review({ formData }: { formData: FormData }) {
   const propertyTypeLabels: Record<string, string> = {
     apartment: 'Departamento',
     house: 'Casa',
-    condo: 'Condominio',
+    condo: 'Estudio',
     land: 'Terreno',
-    commercial: 'Comercial',
+    commercial: 'Otro',
     office: 'Oficina',
   };
 
@@ -605,9 +648,11 @@ function Step4Review({ formData }: { formData: FormData }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-white">Revisar tu Anuncio</h2>
+        <h2 className="text-xl font-bold text-white">
+          Paso 4 · Revisar y publicar
+        </h2>
         <p className="mt-1 text-sm text-gray-400">
-          Asegúrate de que todo esté correcto antes de publicar.
+          Revisa que todo esté correcto antes de publicar tu anuncio.
         </p>
       </div>
 
@@ -671,7 +716,7 @@ function Step4Review({ formData }: { formData: FormData }) {
             {propertyTypeLabels[formData.propertyType] || formData.propertyType}
           </span>
           <span className="rounded-full bg-blue-500/20 px-3 py-1 text-xs text-blue-400">
-            {formData.listingType === 'rent' && formData.fixedTerm
+            {formData.listingType === 'rent' && formData.isAnticretico
               ? 'Anticrético'
               : listingTypeLabels[formData.listingType] || formData.listingType}
           </span>

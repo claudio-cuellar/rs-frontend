@@ -150,3 +150,206 @@ export async function getMyProperties(): Promise<{
 
   return { data, error: null };
 }
+
+// ============================================
+// FAVORITES
+// ============================================
+
+export interface PropertyWithMedia extends Property {
+  property_media: PropertyMedia[];
+}
+
+export async function getFavorites(): Promise<{
+  data: PropertyWithMedia[] | null;
+  error: Error | null;
+}> {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return { data: null, error: new Error('User must be authenticated') };
+  }
+
+  const { data, error } = await supabase
+    .from('favorites')
+    .select(`
+      property_id,
+      properties (
+        *,
+        property_media (*)
+      )
+    `)
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    return { data: null, error: new Error(error.message) };
+  }
+
+  // Extract properties from favorites
+  const properties = data
+    ?.map((f: any) => f.properties)
+    .filter(Boolean) as PropertyWithMedia[];
+
+  return { data: properties || [], error: null };
+}
+
+export async function addFavorite(propertyId: string): Promise<{ error: Error | null }> {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return { error: new Error('User must be authenticated') };
+  }
+
+  const { error } = await supabase
+    .from('favorites')
+    .insert({
+      user_id: user.id,
+      property_id: propertyId,
+    });
+
+  if (error) {
+    // Ignore duplicate key error
+    if (error.code === '23505') {
+      return { error: null };
+    }
+    return { error: new Error(error.message) };
+  }
+
+  return { error: null };
+}
+
+export async function removeFavorite(propertyId: string): Promise<{ error: Error | null }> {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return { error: new Error('User must be authenticated') };
+  }
+
+  const { error } = await supabase
+    .from('favorites')
+    .delete()
+    .eq('user_id', user.id)
+    .eq('property_id', propertyId);
+
+  if (error) {
+    return { error: new Error(error.message) };
+  }
+
+  return { error: null };
+}
+
+export async function isFavorite(propertyId: string): Promise<{
+  data: boolean;
+  error: Error | null;
+}> {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return { data: false, error: new Error('User must be authenticated') };
+  }
+
+  const { data, error } = await supabase
+    .from('favorites')
+    .select('id')
+    .eq('user_id', user.id)
+    .eq('property_id', propertyId)
+    .single();
+
+  if (error && error.code !== 'PGRST116') {
+    return { data: false, error: new Error(error.message) };
+  }
+
+  return { data: !!data, error: null };
+}
+
+// ============================================
+// USER PROFILE
+// ============================================
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  fullName: string;
+  avatarUrl?: string;
+}
+
+export async function getCurrentUser(): Promise<{
+  data: UserProfile | null;
+  error: Error | null;
+}> {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return { data: null, error: new Error('User must be authenticated') };
+  }
+
+  return {
+    data: {
+      id: user.id,
+      email: user.email || '',
+      fullName: user.user_metadata?.full_name || user.email?.split('@')[0] || 'Usuario',
+      avatarUrl: user.user_metadata?.avatar_url,
+    },
+    error: null,
+  };
+}
+
+// ============================================
+// PROPERTY WITH MEDIA
+// ============================================
+
+export async function getMyPropertiesWithMedia(): Promise<{
+  data: PropertyWithMedia[] | null;
+  error: Error | null;
+}> {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return { data: null, error: new Error('User must be authenticated') };
+  }
+
+  const { data, error } = await supabase
+    .from('properties')
+    .select(`
+      *,
+      property_media (*)
+    `)
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    return { data: null, error: new Error(error.message) };
+  }
+
+  return { data: data as PropertyWithMedia[], error: null };
+}

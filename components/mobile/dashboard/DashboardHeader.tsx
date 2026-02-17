@@ -39,8 +39,8 @@ export function DashboardHeader({
 
         {/* Text */}
         <div>
-          <h1 className="text-lg font-semibold text-white">Dashboard</h1>
-          <p className="text-sm text-gray-400">Welcome back, {userName}</p>
+          <h1 className="text-lg font-semibold text-white">Mi Panel</h1>
+          <p className="text-sm text-gray-400">Bienvenido, {userName}</p>
         </div>
       </div>
 

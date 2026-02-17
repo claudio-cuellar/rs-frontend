@@ -91,7 +91,7 @@ export function PhotoUploader({
           >
             <Image
               src={photo.previewUrl}
-              alt={`Photo ${index + 1}`}
+              alt={`Foto ${index + 1}`}
               fill
               className="object-cover"
             />
@@ -106,7 +106,7 @@ export function PhotoUploader({
             {/* Error indicator */}
             {photo.error && (
               <div className="absolute inset-0 flex items-center justify-center bg-red-500/50">
-                <span className="text-xs text-white">Error</span>
+                <span className="text-xs text-white">Error al subir</span>
               </div>
             )}
 
