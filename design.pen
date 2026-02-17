@@ -2327,6 +2327,1625 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "NRPOv",
+      "x": 1635,
+      "y": -100,
+      "name": "FormStep3",
+      "width": 390,
+      "fill": "#101922ff",
+      "stroke": {
+        "align": "inside",
+        "thickness": 1
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "H5Xpk",
+          "name": "Container",
+          "width": "fill_container",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          },
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "zWQzp",
+              "name": "Header & Progress Section",
+              "width": "fill_container",
+              "fill": "#101922ff",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              },
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                16,
+                8,
+                16
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VVrOn",
+                  "name": "Container",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "feN6l",
+                      "name": "Container",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "gap": 191.4199981689453,
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "u7tXD",
+                          "name": "Container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "g3y2d",
+                              "name": "Text",
+                              "fill": "#94a3b8ff",
+                              "textGrowth": "fixed-width-height",
+                              "width": 68.83000183105469,
+                              "height": 21,
+                              "content": "Step 3 of 4",
+                              "lineHeight": 1.5,
+                              "textAlignVertical": "middle",
+                              "fontFamily": "Manrope",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "9fxt9",
+                          "name": "Container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "aBYne",
+                              "name": "Text",
+                              "fill": "#137fecff",
+                              "textGrowth": "fixed-width-height",
+                              "width": 97.75,
+                              "height": 21,
+                              "content": "75% Complete",
+                              "lineHeight": 1.5,
+                              "textAlignVertical": "middle",
+                              "fontFamily": "Manrope",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "U9Laq",
+                      "name": "Overlay",
+                      "clip": true,
+                      "width": "fill_container",
+                      "height": 8,
+                      "fill": "#137fec33",
+                      "cornerRadius": 9999,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 9999,
+                          "id": "PDcOC",
+                          "x": 0,
+                          "y": 0,
+                          "name": "Background",
+                          "fill": "#137fecff",
+                          "width": 268.5,
+                          "height": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "P8zTQ",
+                  "name": "Container",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "gap": 16,
+                  "padding": [
+                    8,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "9TVyx",
+                      "name": "Button",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "padding": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "7QnPT",
+                          "name": "Container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "oo4Iy",
+                              "name": "Icon",
+                              "geometry": "M3.825 9l5.6 5.6-1.425 1.4-8-8 8-8 1.425 1.4-5.6 5.6 12.175 0 0 2-12.175 0 0 0",
+                              "fill": "#ffffffff",
+                              "width": 16,
+                              "height": 16
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "CKsUF",
+                      "name": "Heading 2",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "16cZw",
+                          "name": "Text",
+                          "fill": "#ffffffff",
+                          "textGrowth": "fixed-width-height",
+                          "width": 149.08999633789062,
+                          "height": 25,
+                          "content": "Property Details",
+                          "lineHeight": 1.25,
+                          "textAlignVertical": "middle",
+                          "fontFamily": "Manrope",
+                          "fontSize": 20,
+                          "fontWeight": "700",
+                          "letterSpacing": -0.5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NYz4C",
+              "name": "Navigation Footer",
+              "width": 390,
+              "fill": "#101922ff",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "top": 1
+                },
+                "fill": "#1e293bff"
+              },
+              "layout": "vertical",
+              "padding": 16,
+              "layoutIncludeStroke": true,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YQeer",
+                  "name": "Container",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "gap": 16,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "BlOfo",
+                      "name": "Button",
+                      "width": 131.3300018310547,
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#1e293bff"
+                      },
+                      "layout": "vertical",
+                      "padding": [
+                        16,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "layoutIncludeStroke": true,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "KW3or",
+                          "name": "Text",
+                          "fill": "#ffffffff",
+                          "textGrowth": "fixed-width-height",
+                          "width": 37.13999938964844,
+                          "height": 24,
+                          "content": "Back",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "textAlignVertical": "middle",
+                          "fontFamily": "Manrope",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5kJCt",
+                      "name": "Button",
+                      "width": 210.6699981689453,
+                      "fill": "#137fecff",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "vertical",
+                      "padding": [
+                        17,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 12,
+                          "id": "183BN",
+                          "name": "Button:shadow",
+                          "fill": "#ffffff01",
+                          "width": 210.6699981689453,
+                          "height": 58,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "effect": [
+                            {
+                              "type": "shadow",
+                              "shadowType": "outer",
+                              "color": "#137fec33",
+                              "offset": {
+                                "x": 0,
+                                "y": 4
+                              },
+                              "blur": 5.25,
+                              "spread": -4
+                            },
+                            {
+                              "type": "shadow",
+                              "shadowType": "outer",
+                              "color": "#137fec33",
+                              "offset": {
+                                "x": 0,
+                                "y": 10
+                              },
+                              "blur": 13.125,
+                              "spread": -3
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "9TxdI",
+                          "name": "Text",
+                          "fill": "#ffffffff",
+                          "textGrowth": "fixed-width-height",
+                          "width": 144.75,
+                          "height": 24,
+                          "content": "Continue to Step 4",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "textAlignVertical": "middle",
+                          "fontFamily": "Manrope",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "V1FM7",
+              "name": "Main",
+              "width": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              },
+              "layout": "vertical",
+              "gap": 32,
+              "padding": [
+                16,
+                16,
+                128.5,
+                16
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IC2u4",
+                  "name": "Container",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qUcmo",
+                      "name": "Heading 1",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "P4T7m",
+                          "name": "Tell us more about the space and the agreement.",
+                          "fill": "#ffffffff",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Tell us more about the space\nand the agreement.",
+                          "lineHeight": 1.25,
+                          "textAlignVertical": "middle",
+                          "fontFamily": "Manrope",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DM2TF",
+                      "name": "Container",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QLCSv",
+                          "name": "Fill in the physical characteristics and the legal terms for the Anticrético.",
+                          "fill": "#94a3b8ff",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Fill in the physical characteristics and the legal\nterms for the Anticrético.",
+                          "lineHeight": 1.5,
+                          "textAlignVertical": "middle",
+                          "fontFamily": "Manrope",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TUYnr",
+                  "name": "Physical Specifications Section",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "sKvWy",
+                      "name": "HorizontalBorder",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": {
+                          "bottom": 1
+                        },
+                        "fill": "#1e293bff"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        0,
+                        0,
+                        8,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "layoutIncludeStroke": true,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "UQ7NO",
+                          "name": "Container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "ixYHo",
+                              "name": "Icon",
+                              "geometry": "M0 18l0-18 10 0 0 4 10 0 0 14-20 0 0 0m2-2l2 0 0-2-2 0 0 2 0 0m0-4l2 0 0-2-2 0 0 2 0 0m0-4l2 0 0-2-2 0 0 2 0 0m0-4l2 0 0-2-2 0 0 2 0 0m4 12l2 0 0-2-2 0 0 2 0 0m0-4l2 0 0-2-2 0 0 2 0 0m0-4l2 0 0-2-2 0 0 2 0 0m0-4l2 0 0-2-2 0 0 2 0 0m4 12l8 0 0-10-8 0 0 2 2 0 0 2-2 0 0 2 2 0 0 2-2 0 0 2 0 0m4-6l0-2 2 0 0 2-2 0 0 0m0 4l0-2 2 0 0 2-2 0 0 0",
+                              "fill": "#137fecff",
+                              "width": 20,
+                              "height": 18
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yaTz3",
+                          "name": "Heading 3",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fn8js",
+                              "name": "Text",
+                              "fill": "#ffffffff",
+                              "textGrowth": "fixed-width-height",
+                              "width": 203.4199981689453,
+                              "height": 28,
+                              "content": "Physical Specifications",
+                              "lineHeight": 1.5555555555555556,
+                              "textAlignVertical": "middle",
+                              "fontFamily": "Manrope",
+                              "fontSize": 18,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zlSJ7",
+                      "name": "Container",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "gap": 16,
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "C2WsM",
+                          "name": "Bedrooms",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "RqRu8",
+                              "name": "Label",
+                              "width": "fill_container",
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1
+                              },
+                              "layout": "vertical",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "RDBsk",
+                                  "name": "Bedrooms",
+                                  "fill": "#cbd5e1ff",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Bedrooms",
+                                  "lineHeight": 1.4285714285714286,
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Manrope",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ANY3N",
+                              "name": "Container",
+                              "width": "fill_container",
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1
+                              },
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "EsSyA",
+                                  "name": "Input",
+                                  "clip": true,
+                                  "width": "fill_container",
+                                  "height": 50,
+                                  "fill": "#0f172aff",
+                                  "cornerRadius": 8,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1,
+                                    "fill": "#1e293bff"
+                                  },
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "N5Tgh",
+                                      "x": 41,
+                                      "y": 14,
+                                      "name": "Container",
+                                      "clip": true,
+                                      "width": 98,
+                                      "stroke": {
+                                        "align": "inside",
+                                        "thickness": 1
+                                      },
+                                      "layout": "vertical",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "or8Gu",
+                                          "name": "Text",
+                                          "fill": "#6b7280ff",
+                                          "textGrowth": "fixed-width-height",
+                                          "width": 9.770000457763672,
+                                          "height": 22,
+                                          "content": "0",
+                                          "textAlignVertical": "middle",
+                                          "fontFamily": "Manrope",
+                                          "fontSize": 16,
+                                          "fontWeight": "normal"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "zHiAh",
+                                      "x": 41,
+                                      "y": 13,
+                                      "name": "Container",
+                                      "width": 113,
+                                      "stroke": {
+                                        "align": "inside",
+                                        "thickness": 1
+                                      },
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "DswqE",
+                                          "name": "Container",
+                                          "width": "fill_container",
+                                          "height": 24,
+                                          "stroke": {
+                                            "align": "inside",
+                                            "thickness": 1
+                                          },
+                                          "layout": "none"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "ozrT3",
+                                          "name": "Rectangle:align-stretch",
+                                          "height": "fill_container",
+                                          "stroke": {
+                                            "align": "inside",
+                                            "thickness": 1
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "rectangle",
+                                              "id": "wJZko",
+                                              "name": "Rectangle",
+                                              "opacity": 0,
+                                              "width": 15,
+                                              "height": "fill_container",
+                                              "stroke": {
+                                                "align": "inside",
+                                                "thickness": 1
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "3RvzL",
+                                  "name": "Icon",
+                                  "geometry": "M0 14l0-6c0-0.45 0.09167-0.85833 0.275-1.225 0.18333-0.36667 0.425-0.69167 0.725-0.975l0-2.8c0-0.83333 0.29167-1.54167 0.875-2.125 0.58333-0.58333 1.29167-0.875 2.125-0.875l4 0c0.38333 0 0.74167 0.07083 1.075 0.2125 0.33333 0.14167 0.64167 0.3375 0.925 0.5875 0.28333-0.25 0.59167-0.44583 0.925-0.5875 0.33333-0.14167 0.69167-0.2125 1.075-0.2125l4 0c0.83333 0 1.54167 0.29167 2.125 0.875 0.58333 0.58333 0.875 1.29167 0.875 2.125l0 2.8c0.3 0.28333 0.54167 0.60833 0.725 0.975 0.18333 0.36667 0.275 0.775 0.275 1.225l0 6-2 0 0-2-16 0 0 2-2 0 0 0m11-9l6 0 0-2c0-0.28333-0.09583-0.52083-0.2875-0.7125-0.19167-0.19167-0.42917-0.2875-0.7125-0.2875l-4 0c-0.28333 0-0.52083 0.09583-0.7125 0.2875-0.19167 0.19167-0.2875 0.42917-0.2875 0.7125l0 2 0 0m-8 0l6 0 0-2c0-0.28333-0.09583-0.52083-0.2875-0.7125-0.19167-0.19167-0.42917-0.2875-0.7125-0.2875l-4 0c-0.28333 0-0.52083 0.09583-0.7125 0.2875-0.19167 0.19167-0.2875 0.42917-0.2875 0.7125l0 2 0 0m-1 5l16 0 0-2c0-0.28333-0.09583-0.52083-0.2875-0.7125-0.19167-0.19167-0.42917-0.2875-0.7125-0.2875l-14 0c-0.28333 0-0.52083 0.09583-0.7125 0.2875-0.19167 0.19167-0.2875 0.42917-0.2875 0.7125l0 2 0 0m16 0l0 0-16 0 0 0c0 0 0.09583 0 0.2875 0 0.19167 0 0.42917 0 0.7125 0l14 0c0.28333 0 0.52083 0 0.7125 0 0.19167 0 0.2875 0 0.2875 0l0 0",
+                                  "fill": "#94a3b8ff",
+                                  "width": 20,
+                                  "height": 14
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YxUsc",
+                          "name": "Bathrooms",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "1D1zu",
+                              "name": "Label",
+                              "width": "fill_container",
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1
+                              },
+                              "layout": "vertical",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "7YCb9",
+                                  "name": "Bathrooms",
+                                  "fill": "#cbd5e1ff",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Bathrooms",
+                                  "lineHeight": 1.4285714285714286,
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Manrope",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "9LR9t",
+                              "name": "Container",
+                              "width": "fill_container",
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1
+                              },
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "wAkd4",
+                                  "name": "Input",
+                                  "clip": true,
+                                  "width": "fill_container",
+                                  "height": 50,
+                                  "fill": "#0f172aff",
+                                  "cornerRadius": 8,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1,
+                                    "fill": "#1e293bff"
+                                  },
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "PpAaY",
+                                      "x": 41,
+                                      "y": 14,
+                                      "name": "Container",
+                                      "clip": true,
+                                      "width": 98,
+                                      "stroke": {
+                                        "align": "inside",
+                                        "thickness": 1
+                                      },
+                                      "layout": "vertical",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "ckL8K",
+                                          "name": "Text",
+                                          "fill": "#6b7280ff",
+                                          "textGrowth": "fixed-width-height",
+                                          "width": 9.770000457763672,
+                                          "height": 22,
+                                          "content": "0",
+                                          "textAlignVertical": "middle",
+                                          "fontFamily": "Manrope",
+                                          "fontSize": 16,
+                                          "fontWeight": "normal"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "ZubNB",
+                                      "x": 41,
+                                      "y": 13,
+                                      "name": "Container",
+                                      "width": 113,
+                                      "stroke": {
+                                        "align": "inside",
+                                        "thickness": 1
+                                      },
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "kwmGw",
+                                          "name": "Container",
+                                          "width": "fill_container",
+                                          "height": 24,
+                                          "stroke": {
+                                            "align": "inside",
+                                            "thickness": 1
+                                          },
+                                          "layout": "none"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "PBkIf",
+                                          "name": "Rectangle:align-stretch",
+                                          "height": "fill_container",
+                                          "stroke": {
+                                            "align": "inside",
+                                            "thickness": 1
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "rectangle",
+                                              "id": "42ACJ",
+                                              "name": "Rectangle",
+                                              "opacity": 0,
+                                              "width": 15,
+                                              "height": "fill_container",
+                                              "stroke": {
+                                                "align": "inside",
+                                                "thickness": 1
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "NNZjk",
+                                  "name": "Icon",
+                                  "geometry": "M3 15c-0.28333 0-0.52083-0.09583-0.7125-0.2875-0.19167-0.19167-0.2875-0.42917-0.2875-0.7125 0-0.28333 0.09583-0.52083 0.2875-0.7125 0.19167-0.19167 0.42917-0.2875 0.7125-0.2875 0.28333 0 0.52083 0.09583 0.7125 0.2875 0.19167 0.19167 0.2875 0.42917 0.2875 0.7125 0 0.28333-0.09583 0.52083-0.2875 0.7125-0.19167 0.19167-0.42917 0.2875-0.7125 0.2875l0 0m4 0c-0.28333 0-0.52083-0.09583-0.7125-0.2875-0.19167-0.19167-0.2875-0.42917-0.2875-0.7125 0-0.28333 0.09583-0.52083 0.2875-0.7125 0.19167-0.19167 0.42917-0.2875 0.7125-0.2875 0.28333 0 0.52083 0.09583 0.7125 0.2875 0.19167 0.19167 0.2875 0.42917 0.2875 0.7125 0 0.28333-0.09583 0.52083-0.2875 0.7125-0.19167 0.19167-0.42917 0.2875-0.7125 0.2875l0 0m4 0c-0.28333 0-0.52083-0.09583-0.7125-0.2875-0.19167-0.19167-0.2875-0.42917-0.2875-0.7125 0-0.28333 0.09583-0.52083 0.2875-0.7125 0.19167-0.19167 0.42917-0.2875 0.7125-0.2875 0.28333 0 0.52083 0.09583 0.7125 0.2875 0.19167 0.19167 0.2875 0.42917 0.2875 0.7125 0 0.28333-0.09583 0.52083-0.2875 0.7125-0.19167 0.19167-0.42917 0.2875-0.7125 0.2875l0 0m-11-4l0-2c0-1.76667 0.56667-3.3 1.7-4.6 1.13333-1.3 2.56667-2.06667 4.3-2.3l0-2.1 2 0 0 2.1c1.73333 0.23333 3.16667 1 4.3 2.3 1.13333 1.3 1.7 2.83333 1.7 4.6l0 2-14 0 0 0m2-2l10 0c0-1.38333-0.4875-2.5625-1.4625-3.5375-0.975-0.975-2.15417-1.4625-3.5375-1.4625-1.38333 0-2.5625 0.4875-3.5375 1.4625-0.975 0.975-1.4625 2.15417-1.4625 3.5375l0 0m1 9c-0.28333 0-0.52083-0.09583-0.7125-0.2875-0.19167-0.19167-0.2875-0.42917-0.2875-0.7125 0-0.28333 0.09583-0.52083 0.2875-0.7125 0.19167-0.19167 0.42917-0.2875 0.7125-0.2875 0.28333 0 0.52083 0.09583 0.7125 0.2875 0.19167 0.19167 0.2875 0.42917 0.2875 0.7125 0 0.28333-0.09583 0.52083-0.2875 0.7125-0.19167 0.19167-0.42917 0.2875-0.7125 0.2875l0 0m4 0c-0.28333 0-0.52083-0.09583-0.7125-0.2875-0.19167-0.19167-0.2875-0.42917-0.2875-0.7125 0-0.28333 0.09583-0.52083 0.2875-0.7125 0.19167-0.19167 0.42917-0.2875 0.7125-0.2875 0.28333 0 0.52083 0.09583 0.7125 0.2875 0.19167 0.19167 0.2875 0.42917 0.2875 0.7125 0 0.28333-0.09583 0.52083-0.2875 0.7125-0.19167 0.19167-0.42917 0.2875-0.7125 0.2875l0 0m4 0c-0.28333 0-0.52083-0.09583-0.7125-0.2875-0.19167-0.19167-0.2875-0.42917-0.2875-0.7125 0-0.28333 0.09583-0.52083 0.2875-0.7125 0.19167-0.19167 0.42917-0.2875 0.7125-0.2875 0.28333 0 0.52083 0.09583 0.7125 0.2875 0.19167 0.19167 0.2875 0.42917 0.2875 0.7125 0 0.28333-0.09583 0.52083-0.2875 0.7125-0.19167 0.19167-0.42917 0.2875-0.7125 0.2875l0 0m-4-9l0 0 0 0 0 0 0 0 0 0 0 0",
+                                  "fill": "#94a3b8ff",
+                                  "width": 14,
+                                  "height": 18
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZDe22",
+                      "name": "Square Meters",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "1JHI5",
+                          "name": "Label",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "utk7Y",
+                              "name": "Total Area (m²)",
+                              "fill": "#cbd5e1ff",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Total Area (m²)",
+                              "lineHeight": 1.4285714285714286,
+                              "textAlignVertical": "middle",
+                              "fontFamily": "Manrope",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "59roj",
+                          "name": "Container",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "bb8es",
+                              "name": "Input",
+                              "clip": true,
+                              "width": "fill_container",
+                              "height": 50,
+                              "fill": "#0f172aff",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1,
+                                "fill": "#1e293bff"
+                              },
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "F5jtm",
+                                  "x": 41,
+                                  "y": 14,
+                                  "name": "Container",
+                                  "clip": true,
+                                  "width": 237,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1
+                                  },
+                                  "layout": "vertical",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "UMwEv",
+                                      "name": "Text",
+                                      "fill": "#6b7280ff",
+                                      "textGrowth": "fixed-width-height",
+                                      "width": 54.939998626708984,
+                                      "height": 22,
+                                      "content": "e.g. 120",
+                                      "textAlignVertical": "middle",
+                                      "fontFamily": "Manrope",
+                                      "fontSize": 16,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "pfkwJ",
+                                  "x": 41,
+                                  "y": 13,
+                                  "name": "Container",
+                                  "width": 252,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1
+                                  },
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "do5oW",
+                                      "name": "Container",
+                                      "width": "fill_container",
+                                      "height": 24,
+                                      "stroke": {
+                                        "align": "inside",
+                                        "thickness": 1
+                                      },
+                                      "layout": "none"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "XfCXD",
+                                      "name": "Rectangle:align-stretch",
+                                      "height": "fill_container",
+                                      "stroke": {
+                                        "align": "inside",
+                                        "thickness": 1
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "WLn6W",
+                                          "name": "Rectangle",
+                                          "opacity": 0,
+                                          "width": 15,
+                                          "height": "fill_container",
+                                          "stroke": {
+                                            "align": "inside",
+                                            "thickness": 1
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "path",
+                              "id": "9779t",
+                              "name": "Icon",
+                              "geometry": "M2.2 17.01746c-0.61667 0-1.1375-0.2125-1.5625-0.6375-0.425-0.425-0.6375-0.94583-0.6375-1.5625l0-13.7c0-0.48333 0.225-0.82083 0.675-1.0125 0.45-0.19167 0.84167-0.12083 1.175 0.2125l2.25 2.25-1.35 1.35 0.7 0.7 1.35-1.35 2.6 2.6-1.35 1.35 0.7 0.7 1.35-1.35 2.6 2.6-1.35 1.35 0.7 0.7 1.35-1.35 2.6 2.6-1.35 1.35 0.7 0.7 1.35-1.35 2 2c0.33333 0.33333 0.40417 0.725 0.2125 1.175-0.19167 0.45-0.52917 0.675-1.0125 0.675l-13.7 0 0 0m0.8-3l8.3 0-8.3-8.3 0 8.3 0 0 0 0 0 0",
+                              "fill": "#94a3b8ff",
+                              "width": 17.017459869384766,
+                              "height": 17.017459869384766
+                            },
+                            {
+                              "type": "frame",
+                              "id": "BIEwT",
+                              "name": "Container",
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1
+                              },
+                              "layout": "vertical",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pscs5",
+                                  "name": "Text",
+                                  "fill": "#94a3b8ff",
+                                  "textGrowth": "fixed-width-height",
+                                  "width": 20.309999465942383,
+                                  "height": 24,
+                                  "content": "m²",
+                                  "lineHeight": 1.5,
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Manrope",
+                                  "fontSize": 16,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fSO10",
+                  "name": "Anticrético Terms Section",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "VcP6y",
+                      "name": "HorizontalBorder",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": {
+                          "bottom": 1
+                        },
+                        "fill": "#1e293bff"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        0,
+                        0,
+                        8,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "layoutIncludeStroke": true,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "pDKrI",
+                          "name": "Container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "8yrdF",
+                              "name": "Icon",
+                              "geometry": "M0 19l0-2 12 0 0 2-12 0 0 0m5.65-4.85l-5.65-5.65 2.1-2.15 5.7 5.65-2.15 2.15 0 0m6.35-6.35l-5.65-5.7 2.15-2.1 5.65 5.65-2.15 2.15 0 0m4.6 10.2l-13.05-13.05 1.4-1.4 13.05 13.05-1.4 1.4 0 0",
+                              "fill": "#137fecff",
+                              "width": 18,
+                              "height": 19
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "eASuP",
+                          "name": "Heading 3",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "H2Wj5",
+                              "name": "Text",
+                              "fill": "#ffffffff",
+                              "textGrowth": "fixed-width-height",
+                              "width": 155.63999938964844,
+                              "height": 28,
+                              "content": "Anticrético Terms",
+                              "lineHeight": 1.5555555555555556,
+                              "textAlignVertical": "middle",
+                              "fontFamily": "Manrope",
+                              "fontSize": 18,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lyhLq",
+                      "name": "Duration",
+                      "width": "fill_container",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "fejt0",
+                          "name": "Label",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "bL8AV",
+                              "name": "Contract Duration (Years)",
+                              "fill": "#cbd5e1ff",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Contract Duration (Years)",
+                              "lineHeight": 1.4285714285714286,
+                              "textAlignVertical": "middle",
+                              "fontFamily": "Manrope",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "jDvnR",
+                          "name": "Container",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "XzauI",
+                              "name": "Button",
+                              "fill": "#137fec1a",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1,
+                                "fill": "#137fecff"
+                              },
+                              "layout": "vertical",
+                              "padding": [
+                                12,
+                                37.25,
+                                12,
+                                37.22999954223633
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "layoutIncludeStroke": true,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "3aRO3",
+                                  "name": "Text",
+                                  "fill": "#137fecff",
+                                  "textGrowth": "fixed-width-height",
+                                  "width": 7.019999980926514,
+                                  "height": 24,
+                                  "content": "1",
+                                  "lineHeight": 1.5,
+                                  "textAlign": "center",
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Manrope",
+                                  "fontSize": 16,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "o4QZB",
+                              "name": "Button",
+                              "fill": "#0f172aff",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1,
+                                "fill": "#1e293bff"
+                              },
+                              "layout": "vertical",
+                              "padding": [
+                                12,
+                                36.18000030517578,
+                                12,
+                                36.189998626708984
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "layoutIncludeStroke": true,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "fdGwa",
+                                  "name": "Text",
+                                  "fill": "#cbd5e1ff",
+                                  "textGrowth": "fixed-width-height",
+                                  "width": 9.130000114440918,
+                                  "height": 24,
+                                  "content": "2",
+                                  "lineHeight": 1.5,
+                                  "textAlign": "center",
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Manrope",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ZZ8PJ",
+                              "name": "Button",
+                              "fill": "#0f172aff",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1,
+                                "fill": "#1e293bff"
+                              },
+                              "layout": "vertical",
+                              "padding": [
+                                12,
+                                36.33000183105469,
+                                12,
+                                36.310001373291016
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "layoutIncludeStroke": true,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Nku87",
+                                  "name": "Text",
+                                  "fill": "#cbd5e1ff",
+                                  "textGrowth": "fixed-width-height",
+                                  "width": 8.859999656677246,
+                                  "height": 24,
+                                  "content": "3",
+                                  "lineHeight": 1.5,
+                                  "textAlign": "center",
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Manrope",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "FHfvr",
+                              "name": "Button",
+                              "fill": "#0f172aff",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1,
+                                "fill": "#1e293bff"
+                              },
+                              "layout": "vertical",
+                              "padding": [
+                                12,
+                                31.510000228881836,
+                                12,
+                                31.520000457763672
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "layoutIncludeStroke": true,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "2lPjX",
+                                  "name": "Text",
+                                  "fill": "#cbd5e1ff",
+                                  "textGrowth": "fixed-width-height",
+                                  "width": 18.469999313354492,
+                                  "height": 24,
+                                  "content": "5+",
+                                  "lineHeight": 1.5,
+                                  "textAlign": "center",
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Manrope",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "H4ga9",
+                      "name": "Registration Status",
+                      "width": "fill_container",
+                      "fill": "#0f172a80",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#1e293bff"
+                      },
+                      "layout": "vertical",
+                      "padding": 16,
+                      "layoutIncludeStroke": true,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "cf5PD",
+                          "name": "Container",
+                          "width": 324,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "naHWT",
+                              "name": "Container",
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1
+                              },
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "Gxj4I",
+                                  "name": "Container",
+                                  "width": "fill_container",
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1
+                                  },
+                                  "layout": "vertical",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "dzNcE",
+                                      "name": "Text",
+                                      "fill": "#ffffffff",
+                                      "textGrowth": "fixed-width-height",
+                                      "width": 230.05999755859375,
+                                      "height": 24,
+                                      "content": "Registered in Public Records?",
+                                      "lineHeight": 1.5,
+                                      "textAlignVertical": "middle",
+                                      "fontFamily": "Manrope",
+                                      "fontSize": 16,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "kUM2Q",
+                                  "name": "Container",
+                                  "width": "fill_container",
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1
+                                  },
+                                  "layout": "vertical",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "JyzI7",
+                                      "name": "Text",
+                                      "fill": "#94a3b8ff",
+                                      "textGrowth": "fixed-width-height",
+                                      "width": 254.6699981689453,
+                                      "height": 32,
+                                      "content": "Is this contract legally registered at \"Derechos\nReales\"?",
+                                      "lineHeight": 1.3333333333333333,
+                                      "textAlignVertical": "middle",
+                                      "fontFamily": "Manrope",
+                                      "fontSize": 12,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "KODRR",
+                              "name": "Label",
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 1
+                              },
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "cornerRadius": 9999,
+                                  "id": "oHiP0",
+                                  "name": "Background",
+                                  "fill": "#137fecff",
+                                  "width": 44,
+                                  "height": 24,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1
+                                  }
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "cornerRadius": 9999,
+                                  "id": "x9sYF",
+                                  "name": "Background+Border",
+                                  "fill": "#ffffffff",
+                                  "width": 20,
+                                  "height": 20,
+                                  "stroke": {
+                                    "align": "inside",
+                                    "thickness": 1,
+                                    "fill": "#ffffffff"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "9A428",
+                      "name": "Legal Note",
+                      "width": "fill_container",
+                      "fill": "#137fec0d",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#137fec33"
+                      },
+                      "gap": 12,
+                      "padding": 16,
+                      "layoutIncludeStroke": true,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "lSJbG",
+                          "name": "Container",
+                          "height": 58.5,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "QBpeo",
+                              "name": "Icon",
+                              "geometry": "M9 15l2 0 0-6-2 0 0 6 0 0m1-8c0.28333 0 0.52083-0.09583 0.7125-0.2875 0.19167-0.19167 0.2875-0.42917 0.2875-0.7125 0-0.28333-0.09583-0.52083-0.2875-0.7125-0.19167-0.19167-0.42917-0.2875-0.7125-0.2875-0.28333 0-0.52083 0.09583-0.7125 0.2875-0.19167 0.19167-0.2875 0.42917-0.2875 0.7125 0 0.28333 0.09583 0.52083 0.2875 0.7125 0.19167 0.19167 0.42917 0.2875 0.7125 0.2875l0 0m0 13c-1.38333 0-2.68333-0.2625-3.9-0.7875-1.21667-0.525-2.275-1.2375-3.175-2.1375-0.9-0.9-1.6125-1.95833-2.1375-3.175-0.525-1.21667-0.7875-2.51667-0.7875-3.9 0-1.38333 0.2625-2.68333 0.7875-3.9 0.525-1.21667 1.2375-2.275 2.1375-3.175 0.9-0.9 1.95833-1.6125 3.175-2.1375 1.21667-0.525 2.51667-0.7875 3.9-0.7875 1.38333 0 2.68333 0.2625 3.9 0.7875 1.21667 0.525 2.275 1.2375 3.175 2.1375 0.9 0.9 1.6125 1.95833 2.1375 3.175 0.525 1.21667 0.7875 2.51667 0.7875 3.9 0 1.38333-0.2625 2.68333-0.7875 3.9-0.525 1.21667-1.2375 2.275-2.1375 3.175-0.9 0.9-1.95833 1.6125-3.175 2.1375-1.21667 0.525-2.51667 0.7875-3.9 0.7875l0 0m0-2c2.23333 0 4.125-0.775 5.675-2.325 1.55-1.55 2.325-3.44167 2.325-5.675 0-2.23333-0.775-4.125-2.325-5.675-1.55-1.55-3.44167-2.325-5.675-2.325-2.23333 0-4.125 0.775-5.675 2.325-1.55 1.55-2.325 3.44167-2.325 5.675 0 2.23333 0.775 4.125 2.325 5.675 1.55 1.55 3.44167 2.325 5.675 2.325l0 0m0-8l0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0",
+                              "fill": "#137fecff",
+                              "width": 20,
+                              "height": 20
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "PYiPx",
+                          "name": "Container",
+                          "height": 58.5,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1
+                          },
+                          "layout": "vertical",
+                          "padding": [
+                            0,
+                            14.5,
+                            0,
+                            0
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "1uZoU",
+                              "name": "Text",
+                              "fill": "#cbd5e1ff",
+                              "textGrowth": "fixed-width-height",
+                              "width": 273.4800109863281,
+                              "height": 59,
+                              "content": "Registration status may affect the listing visibility.\nRegistered properties usually receive 40% more\ninquiries.",
+                              "lineHeight": 1.625,
+                              "textAlignVertical": "middle",
+                              "fontFamily": "Manrope",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

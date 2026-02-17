@@ -21,12 +21,15 @@ export const NEIGHBORHOODS = [
 ];
 
 export const PROPERTY_TYPES = [
-  { value: 'house', label: 'Casa' },
   { value: 'apartment', label: 'Departamento' },
-  { value: 'land', label: 'Terreno' },
-  { value: 'commercial', label: 'Comercial' },
+  { value: 'house', label: 'Casa' },
+  { value: 'condo', label: 'Estudio' },
   { value: 'office', label: 'Oficina' },
+  { value: 'land', label: 'Terreno' },
+  { value: 'commercial', label: 'Otro' },
 ];
+
+export const TITLE_MAX_LENGTH = 80;
 
 export const TRANSACTION_TYPES: { value: TransactionType; label: string }[] = [
   { value: 'sale', label: 'Venta' },
@@ -34,17 +37,26 @@ export const TRANSACTION_TYPES: { value: TransactionType; label: string }[] = [
   { value: 'anticretico', label: 'Anticrético' },
 ];
 
+export const CONTRACT_DURATION_OPTIONS = [
+  { value: 1, label: '1' },
+  { value: 2, label: '2' },
+  { value: 3, label: '3' },
+  { value: 5, label: '5+' },
+];
+
 export const infoSchema = z.object({
-  title: z.string().min(10, 'El título debe tener al menos 10 caracteres'),
-  description: z.string().min(50, 'La descripción debe tener al menos 50 caracteres'),
+  title: z.string().min(1, 'Ingresa un título').max(80, 'Máximo 80 caracteres'),
+  description: z.string().optional(),
   transactionType: z.enum(['sale', 'rent', 'anticretico']),
   propertyType: z.string().min(1, 'Selecciona un tipo de propiedad'),
-  price: z.number().min(1, 'Ingresa un precio válido'),
+  price: z.number().min(0),
   currency: z.enum(['BOB', 'USD']),
   bedrooms: z.number().min(0),
   bathrooms: z.number().min(0),
-  livingArea: z.number().min(1, 'Ingresa el área de la propiedad'),
+  livingArea: z.number().min(0),
   parkingSpaces: z.number().min(0),
+  contractDurationYears: z.number().optional(),
+  registeredInPublicRecords: z.boolean().optional(),
 });
 
 export const locationSchema = z.object({

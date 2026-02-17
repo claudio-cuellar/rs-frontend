@@ -4,18 +4,20 @@ import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Check, Home, MapPin, Camera } from 'lucide-react';
+import { Check, Home, MapPin, Camera, FileCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { createClient } from '@/lib/supabase/client';
 import { fullSchema, type FormData } from './multiStepFormTypes';
 import { StepForm1 } from './StepForm1';
 import { StepForm2 } from './StepForm2';
 import { StepForm3 } from './StepForm3';
+import { StepForm4 } from './StepForm4';
 
 const STEPS = [
-  { id: 'info', title: 'Información', icon: Home },
-  { id: 'location', title: 'Ubicación', icon: MapPin },
-  { id: 'photos', title: 'Fotos', icon: Camera },
+  { id: 'info', title: 'Información básica', icon: Home },
+  { id: 'details', title: 'Ubicación y fotos', icon: MapPin },
+  { id: 'details2', title: 'Detalles', icon: Camera },
+  { id: 'review', title: 'Revisar', icon: FileCheck },
 ];
 
 export function MultiStepForm() {
@@ -36,6 +38,8 @@ export function MultiStepForm() {
       bathrooms: 0,
       livingArea: 0,
       parkingSpaces: 0,
+      contractDurationYears: undefined,
+      registeredInPublicRecords: false,
       neighborhood: '',
       address: '',
       city: 'La Paz',
@@ -44,16 +48,20 @@ export function MultiStepForm() {
     mode: 'onBlur',
   });
 
-  const validateStep = useCallback(async (step: number): Promise<boolean> => {
-    const fields: (keyof FormData)[][] = [
-      ['transactionType', 'propertyType', 'title', 'description', 'price', 'currency', 'bedrooms', 'bathrooms', 'livingArea', 'parkingSpaces'],
-      ['neighborhood', 'address', 'city'],
-      ['images'],
-    ];
-
-    const result = await form.trigger(fields[step]);
-    return result;
-  }, [form]);
+  const validateStep = useCallback(
+    async (step: number): Promise<boolean> => {
+      const fields: (keyof FormData)[][] = [
+        ['transactionType', 'propertyType', 'title'],
+        ['neighborhood', 'address', 'city', 'images'],
+        [], // Step 3 — no required fields yet
+        [], // Step 4 — submit validates all
+      ];
+      const stepFields = fields[step];
+      if (stepFields.length === 0) return true;
+      return form.trigger(stepFields);
+    },
+    [form]
+  );
 
   const handleNext = async () => {
     const isValid = await validateStep(currentStep);
@@ -70,24 +78,16 @@ export function MultiStepForm() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-
     try {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
-
       if (!user) {
-        router.push('/login?redirect=/properties/new');
+        router.push('/login?redirect=/m/list');
         return;
       }
-
-      // In production, upload images to Supabase Storage and create property
       console.log('Submitting property:', data);
-
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Redirect to dashboard after success
-      router.push('/dashboard/properties?success=created');
+      router.push('/m/dashboard?success=created');
     } catch (error) {
       console.error('Error creating property:', error);
     } finally {
@@ -97,58 +97,32 @@ export function MultiStepForm() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      {/* Progress Steps */}
-      <nav aria-label="Progress" className="mb-8">
-        <ol className="flex items-center justify-center">
-          {STEPS.map((step, index) => (
-            <li
-              key={step.id}
+      {/* Progress: Step X of 4 · Step name (design style) */}
+      <div className="mb-6">
+        <p className="mb-2 flex items-center gap-1.5 text-sm">
+          <span className="font-semibold text-blue-500">
+            Paso {currentStep + 1} de {STEPS.length}
+          </span>
+          <span className="text-slate-400">· {STEPS[currentStep].title}</span>
+        </p>
+        <div className="flex gap-1">
+          {STEPS.map((_, index) => (
+            <div
+              key={index}
               className={cn(
-                'flex items-center',
-                index !== STEPS.length - 1 && 'flex-1'
+                'h-1.5 flex-1 rounded-full transition-colors',
+                index <= currentStep ? 'bg-blue-500' : 'bg-slate-700'
               )}
-            >
-              <div className="flex flex-col items-center">
-                <div
-                  className={cn(
-                    'flex h-10 w-10 items-center justify-center rounded-full border-2 transition-colors',
-                    index < currentStep
-                      ? 'border-primary-600 bg-primary-600 text-white'
-                      : index === currentStep
-                      ? 'border-primary-600 bg-white text-primary-600'
-                      : 'border-gray-300 bg-white text-gray-400'
-                  )}
-                >
-                  {index < currentStep ? (
-                    <Check className="h-5 w-5" />
-                  ) : (
-                    <step.icon className="h-5 w-5" />
-                  )}
-                </div>
-                <span
-                  className={cn(
-                    'mt-2 text-xs font-medium',
-                    index <= currentStep ? 'text-primary-600' : 'text-gray-400'
-                  )}
-                >
-                  {step.title}
-                </span>
-              </div>
-              {index !== STEPS.length - 1 && (
-                <div
-                  className={cn(
-                    'mx-4 h-0.5 w-full min-w-[60px]',
-                    index < currentStep ? 'bg-primary-600' : 'bg-gray-300'
-                  )}
-                />
-              )}
-            </li>
+            />
           ))}
-        </ol>
-      </nav>
+        </div>
+      </div>
 
-      {/* Form */}
-      <form onSubmit={form.handleSubmit(onSubmit)} className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
+      {/* Form — dark theme to match FormStep1/FormStep2 */}
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="rounded-xl bg-slate-900 p-6 text-white ring-1 ring-slate-700"
+      >
         {currentStep === 0 && (
           <StepForm1 form={form} onNext={handleNext} onBack={handleBack} />
         )}
@@ -156,7 +130,10 @@ export function MultiStepForm() {
           <StepForm2 form={form} onNext={handleNext} onBack={handleBack} />
         )}
         {currentStep === 2 && (
-          <StepForm3 form={form} onNext={handleNext} onBack={handleBack} isSubmitting={isSubmitting} />
+          <StepForm3 form={form} onNext={handleNext} onBack={handleBack} />
+        )}
+        {currentStep === 3 && (
+          <StepForm4 form={form} onNext={handleNext} onBack={handleBack} isSubmitting={isSubmitting} />
         )}
       </form>
     </div>
