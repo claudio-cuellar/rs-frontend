@@ -13,6 +13,5 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // return NextResponse.redirect(`${origin}${redirect}`);
-  return true;
+  return NextResponse.redirect(`${origin}${redirect}`);
 }
