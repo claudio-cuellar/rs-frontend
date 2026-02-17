@@ -163,7 +163,7 @@ export function DashboardPropertyCard({
             </span>
           ) : !isSold ? (
             <Link
-              href={`/m/property/${id}`}
+              href={`/property/${id}`}
               className="rounded-full bg-blue-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-blue-600"
             >
               Ver Detalles

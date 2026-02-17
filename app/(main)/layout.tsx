@@ -1,5 +1,10 @@
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import type { Metadata } from 'next';
+import { MobileNavBar } from '@/components/mobile/MobileNavBar';
+
+export const metadata: Metadata = {
+  title: 'CasaLaPaz',
+  description: 'Tu próximo hogar bajo el Illimani',
+};
 
 export default function MainLayout({
   children,
@@ -7,10 +12,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
+    <div className="min-h-screen bg-slate-900">
+      {children}
+      <MobileNavBar />
+      {/* Spacer for bottom nav */}
+      <div className="h-20" />
     </div>
   );
 }

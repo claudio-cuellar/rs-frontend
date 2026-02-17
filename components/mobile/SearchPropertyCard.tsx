@@ -54,7 +54,7 @@ export function SearchPropertyCard({
 
   return (
     <Link
-      href={`/m/property/${property.id}`}
+      href={`/property/${property.id}`}
       className={cn('block', className)}
     >
       <div className="overflow-hidden rounded-2xl bg-slate-800">

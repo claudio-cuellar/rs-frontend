@@ -27,7 +27,7 @@ export function MobileHeroSearch({ className }: MobileHeroSearchProps) {
     if (searchQuery) {
       params.set('neighborhood', searchQuery);
     }
-    router.push(`/m/search?${params.toString()}`);
+    router.push(`/search?${params.toString()}`);
   };
 
   return (

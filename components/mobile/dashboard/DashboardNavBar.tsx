@@ -12,10 +12,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Search', href: '/m/search', icon: Search },
-  { name: 'Explore', href: '/m', icon: Compass },
-  { name: 'Dashboard', href: '/m/dashboard', icon: LayoutGrid },
-  { name: 'Profile', href: '/m/profile', icon: User },
+  { name: 'Search', href: '/search', icon: Search },
+  { name: 'Explore', href: '/', icon: Compass },
+  { name: 'Dashboard', href: '/dashboard', icon: LayoutGrid },
+  { name: 'Profile', href: '/profile', icon: User },
 ];
 
 interface DashboardNavBarProps {

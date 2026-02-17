@@ -40,7 +40,7 @@ export function FeaturedPropertyCard({
 
   return (
     <Link
-      href={`/m/property/${property.id}`}
+      href={`/property/${property.id}`}
       className={cn(
         'block w-[260px] flex-shrink-0 overflow-hidden rounded-2xl bg-slate-800',
         className

@@ -75,7 +75,7 @@ function isNewListing(createdAt: string): boolean {
 function transformProperty(property: PropertyWithMedia): DashboardProperty {
   const primaryImage = property.property_media?.find((m) => m.is_primary);
   const firstImage = property.property_media?.[0];
-  
+
   return {
     id: property.id,
     title: property.title,
@@ -86,7 +86,7 @@ function transformProperty(property: PropertyWithMedia): DashboardProperty {
     bedrooms: property.bedrooms,
     bathrooms: property.bathrooms,
     area: property.living_area || undefined,
-    location: property.neighborhood 
+    location: property.neighborhood
       ? `${property.neighborhood}, ${property.city || 'La Paz'}`
       : property.city || 'La Paz',
     status: mapStatus(property.status),
@@ -95,17 +95,17 @@ function transformProperty(property: PropertyWithMedia): DashboardProperty {
   };
 }
 
-export default function MobileDashboardPage() {
+export default function DashboardPage() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<DashboardTab>('favorites');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
-  
+
   // Data states
   const [user, setUser] = useState<UserProfile | null>(null);
   const [favorites, setFavorites] = useState<DashboardProperty[]>([]);
   const [myListings, setMyListings] = useState<DashboardProperty[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
-  
+
   // Loading states
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -120,12 +120,12 @@ export default function MobileDashboardPage() {
       try {
         // Get current user
         const { data: userData, error: userError } = await getCurrentUser();
-        
+
         if (userError || !userData) {
           setIsAuthenticated(false);
           return;
         }
-        
+
         setUser(userData);
         setIsAuthenticated(true);
 
@@ -157,7 +157,7 @@ export default function MobileDashboardPage() {
   // Toggle favorite
   const toggleFavorite = async (id: string) => {
     const isFav = favoriteIds.has(id);
-    
+
     // Optimistic update
     setFavoriteIds((prev) => {
       const newSet = new Set(prev);
@@ -230,7 +230,7 @@ export default function MobileDashboardPage() {
             Necesitas iniciar sesión para ver tu dashboard.
           </p>
           <button
-            onClick={() => router.push('/login?redirect=/m/dashboard')}
+            onClick={() => router.push('/login?redirect=/dashboard')}
             className="mt-4 rounded-full bg-blue-500 px-6 py-2.5 font-semibold text-white hover:bg-blue-600"
           >
             Iniciar Sesión
@@ -333,7 +333,7 @@ export default function MobileDashboardPage() {
                   Explora propiedades y guárdalas para verlas aquí
                 </p>
                 <button
-                  onClick={() => router.push('/m/search')}
+                  onClick={() => router.push('/search')}
                   className="mt-4 rounded-full bg-blue-500 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-600"
                 >
                   Explorar Propiedades
@@ -346,7 +346,7 @@ export default function MobileDashboardPage() {
                   Publica tu primera propiedad
                 </p>
                 <button
-                  onClick={() => router.push('/m/list')}
+                  onClick={() => router.push('/list')}
                   className="mt-4 rounded-full bg-blue-500 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-600"
                 >
                   Publicar Propiedad

@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { PropertyDetailHeader } from '@/components/mobile/PropertyDetailHeader';
 import { ImageCarousel } from '@/components/mobile/ImageCarousel';
@@ -61,7 +60,7 @@ interface PropertyDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function MobilePropertyDetailPage({ params }: PropertyDetailPageProps) {
+export default async function PropertyDetailPage({ params }: PropertyDetailPageProps) {
   const { id } = await params;
   const supabase = await createClient();
 

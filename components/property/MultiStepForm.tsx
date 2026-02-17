@@ -82,12 +82,12 @@ export function MultiStepForm() {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        router.push('/login?redirect=/m/list');
+        router.push('/login?redirect=/list');
         return;
       }
       console.log('Submitting property:', data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      router.push('/m/dashboard?success=created');
+      router.push('/dashboard?success=created');
     } catch (error) {
       console.error('Error creating property:', error);
     } finally {
