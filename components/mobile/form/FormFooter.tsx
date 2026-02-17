@@ -10,6 +10,8 @@ interface FormFooterProps {
   showBack?: boolean;
   continueDisabled?: boolean;
   isLoading?: boolean;
+  /** When false, footer is in document flow (always visible at bottom of layout). Default true = fixed to viewport. */
+  fixed?: boolean;
   className?: string;
 }
 
@@ -21,12 +23,14 @@ export function FormFooter({
   showBack = true,
   continueDisabled = false,
   isLoading = false,
+  fixed = true,
   className,
 }: FormFooterProps) {
   return (
     <div
       className={cn(
-        'fixed bottom-0 left-0 right-0 flex gap-3 bg-slate-900 px-4 py-4 pb-safe',
+        'flex gap-3 border-t border-slate-700/80 bg-slate-900 px-4 py-4 pb-safe',
+        fixed && 'fixed bottom-0 left-0 right-0 z-40',
         className
       )}
     >
@@ -44,7 +48,10 @@ export function FormFooter({
       {/* Continue Button */}
       <button
         type="button"
-        onClick={onContinue}
+        onClick={(e) => {
+          e.preventDefault();
+          onContinue?.();
+        }}
         disabled={continueDisabled || isLoading}
         className={cn(
           'rounded-xl bg-blue-500 py-3.5 text-sm font-semibold text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed',
