@@ -1,7 +1,10 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
-import type { PropertyMedia, MediaType } from '@/types/database';
+import type { Database, PropertyMedia, MediaType } from '@/types/database';
+
+type PropertyMediaRow = Database['public']['Tables']['property_media']['Row'];
+type PropertyMediaInsert = Database['public']['Tables']['property_media']['Insert'];
 
 const STORAGE_BUCKET = 'property-media';
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
@@ -126,33 +129,32 @@ export async function uploadPropertyMedia(
   if (data.isPrimary) {
     await supabase
       .from('property_media')
+      // @ts-expect-error Supabase client infers never for table ops when Database schema isn't fully inferred
       .update({ is_primary: false })
       .eq('property_id', data.propertyId)
       .eq('media_type', mediaType);
   }
 
-  // Create database record
-  const { data: media, error: dbError } = await supabase
-    .from('property_media')
-    .insert({
-      property_id: data.propertyId,
-      media_type: mediaType,
-      storage_bucket: STORAGE_BUCKET,
-      storage_path: storagePath,
-      public_url: urlData.publicUrl,
-      filename: filename,
-      original_filename: file.name,
-      mime_type: file.type,
-      file_size: file.size,
-      title: data.title || null,
-      description: data.description || null,
-      alt_text: data.altText || null,
-      is_primary: data.isPrimary || false,
-      sort_order: data.sortOrder || 0,
-      processing_status: 'completed',
-    })
-    .select()
-    .single();
+  // Create database record (Supabase builder can infer 'never' when schema types don't flow; use typed payload)
+  const insertRow: PropertyMediaInsert = {
+    property_id: data.propertyId,
+    media_type: mediaType,
+    storage_bucket: STORAGE_BUCKET,
+    storage_path: storagePath,
+    public_url: urlData.publicUrl,
+    filename: filename,
+    original_filename: file.name,
+    mime_type: file.type,
+    file_size: file.size,
+    title: data.title || null,
+    description: data.description || null,
+    alt_text: data.altText || null,
+    is_primary: data.isPrimary || false,
+    sort_order: data.sortOrder || 0,
+    processing_status: 'completed',
+  };
+  // @ts-expect-error Supabase client infers never for table ops when Database schema isn't fully inferred
+  const { data: media, error: dbError } = await supabase.from('property_media').insert(insertRow).select().single();
 
   if (dbError) {
     // Cleanup uploaded file if database insert fails
@@ -169,20 +171,22 @@ export async function deletePropertyMedia(
   const supabase = createClient();
 
   // Get media record to find storage path
-  const { data: media, error: fetchError } = await supabase
+  const { data: mediaRow, error: fetchError } = await supabase
     .from('property_media')
     .select('storage_path')
     .eq('id', mediaId)
     .single();
 
-  if (fetchError || !media) {
+  if (fetchError || !mediaRow) {
     return { error: new Error('Media not found') };
   }
+
+  const storagePath = (mediaRow as Pick<PropertyMediaRow, 'storage_path'>).storage_path;
 
   // Delete from storage
   const { error: storageError } = await supabase.storage
     .from(STORAGE_BUCKET)
-    .remove([media.storage_path]);
+    .remove([storagePath]);
 
   if (storageError) {
     console.error('Storage deletion error:', storageError);
@@ -229,6 +233,7 @@ export async function setPrimaryMedia(
   // Unset all primary
   await supabase
     .from('property_media')
+    // @ts-expect-error Supabase client infers never for table ops when Database schema isn't fully inferred
     .update({ is_primary: false })
     .eq('property_id', propertyId)
     .eq('media_type', 'image');
@@ -236,6 +241,7 @@ export async function setPrimaryMedia(
   // Set new primary
   const { error } = await supabase
     .from('property_media')
+    // @ts-expect-error Supabase client infers never for table ops when Database schema isn't fully inferred
     .update({ is_primary: true })
     .eq('id', mediaId);
 

@@ -105,7 +105,7 @@ export function PropertyCard({
           <div className="mt-2 flex items-center gap-1 text-sm text-gray-500">
             <MapPin className="h-4 w-4 flex-shrink-0" />
             <span className="truncate">
-              {[property.neighborhood, property.city].filter(Boolean).join(', ') || 'La Paz'}
+              {[['neighborhood' in property ? property.neighborhood : null, property.city].filter(Boolean).join(', '), property.city].filter(Boolean).join(', ') || 'La Paz'}
             </span>
           </div>
 

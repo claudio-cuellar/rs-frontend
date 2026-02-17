@@ -91,7 +91,7 @@ export function FeaturedPropertyCard({
         <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
           <MapPin className="h-3 w-3" />
           <span className="truncate">
-            {property.address_line1 || [property.neighborhood, property.city].filter(Boolean).join(', ') || 'La Paz'}
+            {property.address_line1 || ['neighborhood' in property ? property.neighborhood : null, property.city].filter(Boolean).join(', ') || 'La Paz'}
           </span>
         </div>
 

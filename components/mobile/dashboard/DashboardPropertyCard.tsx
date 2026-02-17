@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { useCurrency } from '@/contexts/CurrencyContext';
 import type { TransactionType } from '@/types/database';
 
-type PropertyStatus = 'active' | 'sold' | 'archived' | 'new';
+type PropertyStatus = 'active' | 'sold' | 'archived' | 'new' | 'draft';
 
 interface DashboardPropertyCardProps {
   id: string;

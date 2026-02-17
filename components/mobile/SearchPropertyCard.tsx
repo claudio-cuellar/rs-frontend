@@ -125,7 +125,7 @@ export function SearchPropertyCard({
           <div className="mt-2 flex items-center gap-1 text-sm text-white">
             <MapPin className="h-4 w-4 text-gray-500" />
             <span>
-              {property.neighborhood || property.city || 'La Paz'}, La Paz
+              {['neighborhood' in property ? property.neighborhood : null, property.city].filter(Boolean).join(', ') || property.city || 'La Paz'}, La Paz
             </span>
           </div>
 

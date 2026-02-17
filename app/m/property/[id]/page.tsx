@@ -84,10 +84,18 @@ export default async function MobilePropertyDetailPage({ params }: PropertyDetai
         .eq('media_type', 'image')
         .order('sort_order');
 
+      const row = data as Property;
+      const mediaUrls = (media as { public_url: string }[] | null)?.map((m) => m.public_url).filter(Boolean) as string[] | undefined;
       property = {
         ...SAMPLE_PROPERTY,
-        ...(data as Property),
-        images: media?.map((m) => m.public_url).filter(Boolean) as string[] || SAMPLE_PROPERTY.images,
+        ...row,
+        description: row.description ?? SAMPLE_PROPERTY.description,
+        living_area: row.living_area ?? SAMPLE_PROPERTY.living_area,
+        latitude: row.latitude ?? SAMPLE_PROPERTY.latitude,
+        longitude: row.longitude ?? SAMPLE_PROPERTY.longitude,
+        neighborhood: row.neighborhood ?? SAMPLE_PROPERTY.neighborhood,
+        city: row.city ?? SAMPLE_PROPERTY.city,
+        images: mediaUrls?.length ? mediaUrls : SAMPLE_PROPERTY.images,
       };
     }
   }

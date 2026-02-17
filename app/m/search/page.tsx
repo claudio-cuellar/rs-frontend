@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SearchHeader } from '@/components/mobile/SearchHeader';
 import { FilterBar } from '@/components/mobile/FilterBar';
@@ -89,7 +89,7 @@ const SAMPLE_PROPERTIES: (Partial<Property> & { id: string; imageUrl: string; tr
   },
 ];
 
-export default function MobileSearchPage() {
+function MobileSearchContent() {
   const searchParams = useSearchParams();
   const [sortBy, setSortBy] = useState<SortOption>('recommended');
   const [filters, setFilters] = useState<Record<string, string>>({});
@@ -195,5 +195,17 @@ export default function MobileSearchPage() {
       {/* Bottom Nav */}
       <MobileNavBar />
     </div>
+  );
+}
+
+export default function MobileSearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-900 pb-32 flex items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-600 border-t-blue-400" />
+      </div>
+    }>
+      <MobileSearchContent />
+    </Suspense>
   );
 }
